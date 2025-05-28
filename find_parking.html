@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/homepage.css" />
   <link rel="stylesheet" href="css/header.css" />
   <link rel="stylesheet" href="css/find_parking.css" />
+
 </head>
 <body class="bg-light min-vh-100">
 
@@ -62,10 +63,43 @@
       </div>
       <div class="counter-info">
         <p class="label">Available Parking Spots</p>
-        <h1 id="parking-counter">32</h1>
+            <div class="card">
+    <b><div  class="count" id="availableCount"><b>--</b></div></b>
+  </div>
       </div>
     </div>
   </div>
+
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <script>
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyBy9zZais89TA3pikATtJ5WBHh9Z2uHprE",
+      authDomain: "ewett-18db2.firebaseapp.com",
+      databaseURL: "https://ewett-18db2-default-rtdb.firebaseio.com",
+      projectId: "ewett-18db2",
+      storageBucket: "ewett-18db2.appspot.com",
+      messagingSenderId: "575187118522",
+      appId: "1:575187118522:web:0c9db48ee20595e47ff796"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const countDisplay = document.getElementById('availableCount');
+
+    // Listen for changes
+    db.ref('parking/available').on('value', (snapshot) => {
+      const value = snapshot.val();
+      countDisplay.textContent = value !== null ? value : '--';
+    });
+  </script>
+
   
   
    <!-- end counter -->
