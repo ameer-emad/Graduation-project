@@ -7,21 +7,17 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css" />
-  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;700&family=Reem+Kufi+Fun:wght@700&display=swap" rel="stylesheet" />
-  
   <!-- Font Awesome -->
   <link rel="stylesheet" href="fontawesome-free-5.15.4-web/css/all.min.css" />
-  
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/homepage.css" />
   <link rel="stylesheet" href="css/header.css" />
   <link rel="stylesheet" href="css/payment_page.css" />
 </head>
-
 <body class="bg-white min-vh-100">
 
   <!-- Navigation -->
@@ -58,33 +54,29 @@
   <!-- End Navigation -->
 
   <!-- Payment Section -->
-  <form action="pay.html" method="post">
-    <section class="py-5 mt-5">
-      <div class="container d-flex justify-content-center align-items-center flex-column">
-        <div class="card-image" style="width: 400px; height: 450px;">
-          <img width="550px" height="350px" src="./images/visa.jpg" alt="Visa Card">
+  <section class="py-5 mt-5">
+    <div class="container d-flex justify-content-center align-items-center flex-column">
+      <div class="card-image" style="width: 400px; height: 450px;">
+        <img width="550px" height="350px" src="./images/visa.jpg" alt="Visa Card">
+      </div>
+
+      <div class="payment-box mt-4 p-4 bg-white shadow" style="width: 400px; height: 320px; border-radius: 10px;">
+        <h3 class="text-center mb-4">Payment Details</h3>
+        <input type="text" class="form-control mb-2" placeholder="CARD NUMBER" name="card_num" required>
+        <input type="text" class="form-control mb-2" placeholder="CARDHOLDER NAME" name="card_name" required>
+        <div class="d-flex gap-2 mb-2">
+          <input type="text" class="form-control" placeholder="12" required>
+          <input type="text" class="form-control" placeholder="2026" required>
+          <input type="text" class="form-control" placeholder="CVV" required>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" style="width: 35px; height: auto;">
         </div>
-
-        <div class="payment-box mt-4 p-4 bg-white shadow" style="width: 400px; height: 320px; border-radius: 10px;">
-          <h3 class="text-center mb-4">Payment Details</h3>
-          <input type="text" class="form-control mb-2" placeholder="CARD NUMBER" name="card_num" required>
-          <input type="text" class="form-control mb-2" placeholder="CARDHOLDER NAME" name="card_name" required>
-
-          <div class="d-flex gap-2 mb-2">
-            <input type="text" class="form-control" placeholder="MM" name="exp_month" required>
-            <input type="text" class="form-control" placeholder="YYYY" name="exp_year" required>
-            <input type="text" class="form-control" placeholder="CVV" name="cvv" maxlength="4" required>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" style="width: 35px; height: auto;">
-          </div>
-
-          <div class="d-flex gap-2 mt-3">
-            <button type="submit" class="btn btn-primary w-100" name="confirm">CONFIRM AND PAY</button>
-            <button type="button" class="btn btn-secondary w-100">CANCEL</button>
-          </div>
+        <div class="d-flex gap-2 mt-3">
+          <button type="button" class="btn btn-primary w-100" onclick="redirectToCode()">CONFIRM AND PAY</button>
+          <button type="reset" class="btn btn-secondary w-100">CANCEL</button>
         </div>
       </div>
-    </section>
-  </form>
+    </div>
+  </section>
   <!-- End Payment Section -->
 
   <!-- Footer -->
@@ -92,7 +84,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4 mb-4 mb-md-0 d-flex align-items-center">
-          <img src="images/parking_logo6.png" alt="Company Logo" width="70" height="70" class="mb-3 mr-3">
+          <img src="images/parking_logo6.png" alt="Company Logo" width="70" height="70" class="mb-3 me-3">
           <p class="small">Empowering cities to manage parking and provide the best parking experience for drivers, merchants and solution providers.</p>
         </div>
         <div class="col-md-2 mb-4 mb-md-0">
@@ -133,5 +125,12 @@
 
   <!-- Bootstrap JS -->
   <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS -->
+  <script>
+    function redirectToCode() {
+      window.location.href = "code.html";
+    }
+  </script>
 </body>
 </html>
