@@ -7,19 +7,21 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;700&family=Reem+Kufi+Fun:wght@700&display=swap" rel="stylesheet" />
+  
   <!-- Font Awesome -->
   <link rel="stylesheet" href="fontawesome-free-5.15.4-web/css/all.min.css" />
+  
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/homepage.css" />
   <link rel="stylesheet" href="css/header.css" />
   <link rel="stylesheet" href="css/payment_page.css" />
-  
-  
 </head>
+
 <body class="bg-white min-vh-100">
 
   <!-- Navigation -->
@@ -46,8 +48,8 @@
           <li class="nav-item"><a class="nav-link" href="choose_us.html">Why Us</a></li>
           <li class="nav-item"><a class="nav-link" href="#about us">About US</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="questions.html">FAQ </a></li>
-          <li class="nav-item"><a class="nav-link" href="#sign">Sign In </a></li>
+          <li class="nav-item"><a class="nav-link" href="questions.html">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sign">Sign In</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center" href="profile.html"><i class="fas fa-user-circle user-icon"></i></a></li>
         </ul>
       </div>
@@ -56,33 +58,33 @@
   <!-- End Navigation -->
 
   <!-- Payment Section -->
-<form action="pay.html" method="post">
-<section class="py-5 mt-5">
-    <div class="container d-flex justify-content-center align-items-center flex-column">
-      <div class="card-image" style="width: 400px; height: 450px;"><img width="550px" height="350px" src="./images/visa.jpg"></div>
-
-      <div class="payment-box mt-4 p-4 bg-white shadow" style="width: 400px;  height:320px; border-radius: 10px;">
-        <h3 class="text-center mb-4">Payment Details</h3>
-        <input type="text" class="form-control mb-2" placeholder="CARD NUMBER" name="card_num" required>
-        <input type="text" class="form-control mb-2" placeholder="CARDHOLDER NAME" name="card_name" required>
-        <div class="d-flex gap-2 mb-2">
-          <input type="text" class="form-control" placeholder="12">
-          <input type="text" class="form-control" placeholder="2026">
-          <input type="text" class="form-control" placeholder="CVV">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" style="width: 35px; height: auto;">
+  <form action="pay.html" method="post">
+    <section class="py-5 mt-5">
+      <div class="container d-flex justify-content-center align-items-center flex-column">
+        <div class="card-image" style="width: 400px; height: 450px;">
+          <img width="550px" height="350px" src="./images/visa.jpg" alt="Visa Card">
         </div>
-        <div class="d-flex gap-2 mt-3">
-         <button class="btn btn-primary w-100" name="confirm"  href="#code.html">CONFIRM AND PAY</button>
-          <buttion class="btn btn-secondary w-100">CANCEL</button>
+
+        <div class="payment-box mt-4 p-4 bg-white shadow" style="width: 400px; height: 320px; border-radius: 10px;">
+          <h3 class="text-center mb-4">Payment Details</h3>
+          <input type="text" class="form-control mb-2" placeholder="CARD NUMBER" name="card_num" required>
+          <input type="text" class="form-control mb-2" placeholder="CARDHOLDER NAME" name="card_name" required>
+
+          <div class="d-flex gap-2 mb-2">
+            <input type="text" class="form-control" placeholder="MM" name="exp_month" required>
+            <input type="text" class="form-control" placeholder="YYYY" name="exp_year" required>
+            <input type="text" class="form-control" placeholder="CVV" name="cvv" maxlength="4" required>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" style="width: 35px; height: auto;">
+          </div>
+
+          <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary w-100" name="confirm">CONFIRM AND PAY</button>
+            <button type="button" class="btn btn-secondary w-100">CANCEL</button>
+          </div>
         </div>
-      </div>x
-    </div>
-  </section>
-</form>
-
-
-
-  
+      </div>
+    </section>
+  </form>
   <!-- End Payment Section -->
 
   <!-- Footer -->
