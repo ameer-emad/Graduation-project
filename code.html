@@ -50,20 +50,21 @@
   <div class="container">
     <div class="success-icon">✅</div>
     <div class="title">Payment Successful</div>
-    <div class="code-box" id="codeBox">Your code is:  </div>
+    <div class="code-box" id="codeBox"></div>
   </div>
 
-  <!-- كود JavaScript بعد كل عناصر الصفحة -->
   <script>
+    // كشف إعادة التحميل
+    if (performance.navigation.type === 1) {
+      // لو المستخدم عمل Reload
+      history.back(); // يرجع للصفحة السابقة
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
-      // قائمة الأرقام المحفوظة
       const codes = [1234, 5678, 9012, 3456, 7890, 2468, 1357, 8080, 4321, 6789];
-      // اختيار عشوائي من القائمة
       const randomCode = codes[Math.floor(Math.random() * codes.length)];
-      // عرض الكود داخل العنصر
       const box = document.getElementById('codeBox');
       box.textContent = `Your code is: ${randomCode}`;
-      ;
     });
   </script>
 
