@@ -3,24 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SmartPark</title>
+  <title>SmartPark - Payment</title>
 
-  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css" />
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;700&family=Reem+Kufi+Fun:wght@700&display=swap" rel="stylesheet" />
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="fontawesome-free-5.15.4-web/css/all.min.css" />
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/homepage.css" />
   <link rel="stylesheet" href="css/header.css" />
   <link rel="stylesheet" href="css/payment_page.css" />
 </head>
 <body class="bg-white min-vh-100">
 
-  <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="#">
@@ -51,25 +46,21 @@
       </div>
     </div>
   </nav>
-  <!-- End Navigation -->
-
-  <!-- Payment Section -->
   <section class="py-5 mt-5">
     <div class="container d-flex justify-content-center align-items-center flex-column">
-      <div class="card-image" style="width: 400px; height: 450px;">
-        <img width="550px" height="350px" src="./images/visa.jpg" alt="Visa Card">
+      <div class="card-image" style="max-width: 400px;">
+        <img class="img-fluid" src="./images/visa.jpg" alt="Visa Card">
       </div>
 
-      <!-- Form Starts -->
-      <form id="paymentForm" onsubmit="return validateAndRedirect()" class="payment-box mt-4 p-4 bg-white shadow" style="width: 400px; height: 320px; border-radius: 10px;">
+      <form id="paymentForm" onsubmit="return validateAndRedirect()" class="payment-box mt-4 p-4 bg-white shadow" style="width: 400px; border-radius: 10px;">
         <h3 class="text-center mb-4">Payment Details</h3>
-        <input type="text" class="form-control mb-2" placeholder="your location" name="location" required>
-        <input type="number" class="form-control mb-2" placeholder="CARD NUMBER" name="card_num" required>
-        <input type="text" class="form-control mb-2" placeholder="CARDHOLDER NAME" name="card_name" required>
+        <input type="text" class="form-control mb-2" placeholder="Your Location" name="location" required>
+        <input type="text" class="form-control mb-2" placeholder="CARD NUMBER" name="card_num" required maxlength="16" pattern="\d{16}" inputmode="numeric" title="Please enter a 16-digit card number.">
+        <input type="text" class="form-control mb-2" placeholder="CARDHOLDER NAME" name="card_name" required pattern="[A-Za-z\s]+" title="Please enter a valid name (letters and spaces only).">
         <div class="d-flex gap-2 mb-2">
-          <input type="text" class="form-control" placeholder="MM" name="exp_month" required>
-          <input type="text" class="form-control" placeholder="YYYY" name="exp_year" required>
-          <input type="text" class="form-control" placeholder="CVV" name="cvv" required>
+          <input type="text" class="form-control" placeholder="MM" name="exp_month" required maxlength="2" pattern="\d{2}" inputmode="numeric" title="Enter a 2-digit month (e.g., 05).">
+          <input type="text" class="form-control" placeholder="YYYY" name="exp_year" required maxlength="4" pattern="\d{4}" inputmode="numeric" title="Enter a 4-digit year (e.g., 2028).">
+          <input type="text" class="form-control" placeholder="CVV" name="cvv" required maxlength="3" pattern="\d{3}" inputmode="numeric" title="Please enter a 3-digit CVV.">
           <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" style="width: 35px; height: auto;">
         </div>
         <div class="d-flex gap-2 mt-3">
@@ -77,17 +68,13 @@
           <button type="reset" class="btn btn-secondary w-100">CANCEL</button>
         </div>
       </form>
-      <!-- Form Ends -->
-    </div>
+      </div>
   </section>
-  <!-- End Payment Section -->
-
-  <!-- Footer -->
   <footer class="bg-dark text-white py-4 footer">
     <div class="container">
       <div class="row">
         <div class="col-md-4 mb-4 mb-md-0 d-flex align-items-center">
-          <img src="images/parking_logo6.png" alt="Company Logo" width="70" height="70" class="mb-3 mr-3">
+          <img src="images/parking_logo6.png" alt="Company Logo" width="70" height="70" class="mb-3 me-3">
           <p class="small">Empowering cities to manage parking and provide the best parking experience for drivers, merchants and solution providers.</p>
         </div>
         <div class="col-md-2 mb-4 mb-md-0">
@@ -124,27 +111,63 @@
       </div>
     </div>
   </footer>
-  <!-- End Footer -->
-
-  <!-- Bootstrap JS -->
   <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- JavaScript for validation and redirection -->
   <script>
     function validateAndRedirect() {
       const form = document.getElementById("paymentForm");
-      const inputs = form.querySelectorAll("input[required]");
+      const requiredInputs = form.querySelectorAll("input[required]");
 
-      for (let input of inputs) {
+      // 1. التحقق من أن جميع الحقول المطلوبة ليست فارغة
+      for (let input of requiredInputs) {
         if (!input.value.trim()) {
-          alert("من فضلك املأ جميع الحقول");
+          alert("Please fill in all required fields.");
           return false;
         }
       }
 
-      // All fields are filled, redirect
+      // 2. التحقق من صحة تنسيق البيانات
+      const cardNumber = form.card_num.value;
+      const expMonth = parseInt(form.exp_month.value, 10);
+      const expYear = parseInt(form.exp_year.value, 10);
+      const cvv = form.cvv.value;
+
+      // التحقق من رقم البطاقة (16 رقم)
+      if (!/^\d{16}$/.test(cardNumber)) {
+        alert("Please enter a valid 16-digit card number.");
+        return false;
+      }
+
+      // التحقق من اسم حامل البطاقة (حروف ومسافات فقط)
+      if (!/^[A-Za-z\s]+$/.test(form.card_name.value)) {
+          alert("Please enter a valid cardholder name (letters and spaces only).");
+          return false;
+      }
+
+      // التحقق من تاريخ الانتهاء
+      if (isNaN(expMonth) || expMonth < 1 || expMonth > 12) {
+          alert("Please enter a valid month (01-12).");
+          return false;
+      }
+      
+      const currentYear = new Date().getFullYear();
+      const currentMonth = new Date().getMonth() + 1; // getMonth() is 0-indexed (0-11)
+      if (isNaN(expYear) || expYear < currentYear || (expYear === currentYear && expMonth < currentMonth)) {
+        alert("The expiration date is in the past. Please enter a valid date.");
+        return false;
+      }
+
+      // التحقق من CVV (3 أرقام)
+      if (!/^\d{3}$/.test(cvv)) {
+        alert("Please enter a valid 3-digit CVV.");
+        return false;
+      }
+
+      // 3. إذا كان كل شيء صحيحًا، قم بالتحويل
+      console.log("Payment details are valid. Redirecting...");
       window.location.href = "code2.html";
-      return false; // Prevent default form submission
+      
+      return false; // منع الإرسال التقليدي للنموذج
     }
   </script>
 </body>
