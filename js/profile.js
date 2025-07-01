@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const viewAllBtn = document.getElementById('viewAllRecordsBtn');
+    // div content
     const allRecordsDiv = document.getElementById('allRecords');
   
     allRecordsDiv.addEventListener('shown.bs.collapse', () => {
